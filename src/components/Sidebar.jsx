@@ -8,19 +8,25 @@ import { links } from '../data/dummy'
 import { useStateContext } from '../contexts/ContextProvider'; 
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const handleCloseSideBar = () => {
+    if(activeMenu && screenSize <= 900){
+      setActiveMenu(false);
+    }
+  }
 
-  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
+  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-white  text-md m-2';
   const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
 
   return (
-    <div className='
-      ml-3 
-      pb-10
-      h-screen
-      overflow-auto
-      md:overflow-hidden
-      md:hover:overflow-auto
+    <div 
+      className='
+        ml-3 
+        pb-10
+        h-screen 
+        overflow-auto 
+        md:overflow-hidden 
+        md:hover:overflow-auto 
       '>
       {activeMenu && (<>
         <div className='
@@ -30,7 +36,7 @@ const Sidebar = () => {
         '>
           <Link 
             to="/" 
-            onClick={() => setActiveMenu(false)}
+            onClick={handleCloseSideBar}
             className='
               ml-3
               mt-4
@@ -60,6 +66,7 @@ const Sidebar = () => {
                 mt-4 
                 block 
                 text-xl
+                md:hidden
                 rounded-full
                 hover:bg-light-gray 
               '
@@ -79,6 +86,7 @@ const Sidebar = () => {
                   mt-4
                   uppercase
                   text-gray-400
+                  dark:text-gray-400
                 '
               >
                 {item.title}
@@ -87,7 +95,7 @@ const Sidebar = () => {
                 <NavLink
                   to={`/${link.name}`}
                   key={link.name}
-                  onClick={() => {}}
+                  onClick={handleCloseSideBar}
                   className={({ isActive }) => 
                   isActive ? activeLink : normalLink}
                 >
