@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, } from 'react-router-dom'
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
@@ -27,24 +27,31 @@ import {
   Bar, 
   Pie,  
 } from './pages'
+
+import { useStateContext } from './contexts/ContextProvider';
+
 import './App.css'
 
 const App = () => {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
+
   return (
     <div>
-      <Router>
+      <BrowserRouter>
         <div className='flex relative dark:bg-main-dark-bg'>
           <div className='fixed right-4 bottom-4' style={{ zIndex: '1000' }}>
-            <TooltipComponent content='Settings' position='Top'>
+            <TooltipComponent 
+              content='Settings' 
+              position='Top'
+            >
               <button  
                 type="button"
                 className='
-                  text-3x1 
                   p-3 
+                  text-3x1 
+                  text-white
                   hover:drop-shadow-x1 
-                  hover:bg-light-gray
-                  text-white'
+                  hover:bg-light-gray'
                 style={{ 
                   background: 'blue', 
                   borderRadius: '50%' 
@@ -59,8 +66,8 @@ const App = () => {
               w-72 
               fixed 
               sidebar
-              dark:bg-secondary-dark-bg
-              bg-white'
+              bg-white
+              dark:bg-secondary-dark-bg'
             >
               <Sidebar/>
             </div>
@@ -73,16 +80,18 @@ const App = () => {
             </div>
           )}
           <div className={ 
-            `dark:bg-main-bg bg-main-bg min-h-screen w-full 
+            `w-full 
+            dark:bg-main-bg 
+            bg-main-bg min-h-screen 
             ${activeMenu ? 'md:ml-72' : 'flex-2'}`
           }>
             <div className='
               fixed 
+              w-full
+              navbar
               md:static
               bg-main-bg
               dark:bg-main-dark-bg
-              navbar
-              w-full
             '>
               <Navbar/>
             </div>
@@ -91,7 +100,6 @@ const App = () => {
                 {/* Dashboard */}
                 <Route path='/' element={<Ecommerce/>}/>
                 <Route path='/ecommerce' element={<Ecommerce/>}/>
-
                 {/* Pages */}
                 <Route path='/orders' element={<Orders/>}/>
                 <Route path='/employees' element={<Employees/>}/>
@@ -114,10 +122,9 @@ const App = () => {
                 <Route path='/stacked' element={<Stacked/>}/>
               </Routes>
             </div>
-            {/* Footer */}
           </div>
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   )
 }
