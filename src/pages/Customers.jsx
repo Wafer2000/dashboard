@@ -1,15 +1,15 @@
 import React from "react";
 import {
-  GridComponent,
-  ColumnsDirective,
-  ColumnDirective,
-  Page,
-  Selection,
-  Inject,
-  Edit,
-  Toolbar,
   Sort,
+  Page,
+  Edit,
+  Inject,
   Filter,
+  Toolbar,
+  Selection,
+  GridComponent,
+  ColumnDirective,
+  ColumnsDirective,
 } from "@syncfusion/ej2-react-grids";
 
 import { customersData, customersGrid } from "../data/dummy";

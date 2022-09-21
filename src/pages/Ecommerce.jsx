@@ -7,12 +7,12 @@ import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Stacked, Pie, Button, LineChart, SparkLine } from "../components";
 import {
   earningData,
-  medicalproBranding,
-  recentTransactions,
   weeklyStats,
   dropdownData,
-  SparklineAreaData,
   ecomPieChartData,
+  SparklineAreaData,
+  medicalproBranding,
+  recentTransactions,
 } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 import product9 from "../data/product9.jpg";

@@ -1,12 +1,16 @@
 import React from "react";
 import {
-  GridComponent,
-  ColumnsDirective,
-  ColumnDirective,
+  Sort,
+  Edit,
   Page,
+  Filter,
   Search,
   Inject,
-  Toolbar
+  Toolbar,
+  Selection,
+  GridComponent,
+  ColumnDirective,
+  ColumnsDirective,
 } from "@syncfusion/ej2-react-grids";
 
 import { employeesData, employeesGrid } from "../data/dummy";
@@ -29,7 +33,8 @@ const Employees = () => {
         dataSource={employeesData}
         allowPaging
         allowSorting
-        toolbar={['Search']}
+        toolbar={["Search", "Delete"]}
+        editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
       >
         <ColumnsDirective>
@@ -37,7 +42,9 @@ const Employees = () => {
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
-        <Inject services={[Page, Search, Toolbar]} />
+        <Inject
+          services={[Page, Search, Toolbar, Selection, Edit, Sort, Filter]}
+        />
       </GridComponent>
     </div>
   );
